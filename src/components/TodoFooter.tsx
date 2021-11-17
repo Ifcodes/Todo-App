@@ -1,25 +1,44 @@
-import {useState} from 'react'
+import {Todo} from '../App'
+import { Button, StatusButton } from '../styles/resources'
+import styled from 'styled-components'
 
-interface Todo {
-  id: number,
-  text: string,
-  completed: boolean
-}
+const TodoFooterWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  margin: 0.5rem 0 ;
+  justify-content: space-between;
+  padding: 0 0.75rem 0;
+  font-size: .85rem;
+  color: ${props => props.theme.colors.primary}
+`
+const TodoFooterLeft = styled.div`
+  display: flex;
+  width: 65%;
+  justify-content: space-between;
+  align-items: center;
+`
 
-const TodoFooter = ({setTodoCopy, activeTodo, completedTask, setTodos, todos}:{setTodoCopy: Function,  activeTodo: Todo[], completedTask: Todo[], setTodos: Function, todos: Todo[]}) => {
+const TodoFooter = ({setTodoCopy, activeTodo, completedTask, setTodos, todos, todoCopy}:{setTodoCopy: Function,  activeTodo: Todo[], completedTask: Todo[], setTodos: Function, todos: Todo[], todoCopy: string}) => {
   
   const clearCompleted = () => {
    setTodos(todos.filter(todo => todo.completed === false))
  }
 
   return(
-    <div>
-    <span>{`${activeTodo.length} item${activeTodo.length > 1 ? 's' : ''} left`}</span>
-    <button onClick={() => setTodoCopy('all')}>All</button>
-    <button onClick={() => setTodoCopy('active')}>Active</button>
-    <button onClick={() => setTodoCopy('completed')}>Completed</button>
-    {completedTask.length > 0 ? <button onClick={clearCompleted}>Clear Completed</button> : ''}
-    </div>
+    <TodoFooterWrapper>
+      <TodoFooterLeft>
+        <span>{`${activeTodo.length} item${activeTodo.length > 1 ? 's' : ''} left`}</span>
+        <div>
+          <StatusButton none='none' active={todoCopy === 'all' ? true : false} onClick={() => setTodoCopy('all')}>All</StatusButton>
+          <StatusButton none='none' active={todoCopy === 'active' ? true : false}  onClick={() => setTodoCopy('active')}>Active</StatusButton>
+          <StatusButton none='none' active={todoCopy === 'completed' ? true : false}  onClick={() => setTodoCopy('completed')}>Completed</StatusButton>
+        </div>
+      </TodoFooterLeft>
+      <div>
+        {completedTask.length > 0 ? <Button onClick={clearCompleted}>Clear Completed</Button> : ''}
+      </div>
+      
+    </TodoFooterWrapper>
   )
 }
 
