@@ -93,6 +93,7 @@ function App() {
         completedTask={completedTask}
         setTodoCopy={setTodoCopy}
         todoCopy={todosCopy}
+        markAll={markAll}
         />}
       </ListContainer>
     </TodoWrapper>

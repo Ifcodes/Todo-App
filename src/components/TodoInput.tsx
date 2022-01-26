@@ -50,16 +50,16 @@ const TodoInput = ({setTodos, todos, markAll, setMarkAll}:{setTodos: Function, t
    setNewTodo('')
  }
 
- const handleMarkAll = () => {
-   setMarkAll(markAll = !markAll)
-  //  todos.map(todo => todo.completed = !todo.completed)
+//  const handleMarkAll = () => {
+//    setMarkAll(markAll = !markAll)
+//   //  todos.map(todo => todo.completed = !todo.completed)
    
- }
+//  }
 
   return (
     <>
       <TodoForm onSubmit={handleSubmit}>
-          <img src={ArrowDown} alt='arrowdown' onClick={handleMarkAll}/>
+          {/* <img src={ArrowDown} alt='arrowdown' onClick={handleMarkAll}/> */}
           <Input type='text' value={newTodo} onChange={handleChange} placeholder='What needs to be done?'/> 
       </TodoForm>
     </>

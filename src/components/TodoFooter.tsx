@@ -9,7 +9,7 @@ const TodoFooterWrapper = styled.div`
   justify-content: space-between;
   padding: 0 0.75rem 0;
   font-size: .85rem;
-  color: ${props => props.theme.colors.primary}
+  color: ${props => props.theme.colors.primary};
 `
 const TodoFooterLeft = styled.div`
   display: flex;
@@ -18,7 +18,7 @@ const TodoFooterLeft = styled.div`
   align-items: center;
 `
 
-const TodoFooter = ({setTodoCopy, activeTodo, completedTask, setTodos, todos, todoCopy}:{setTodoCopy: Function,  activeTodo: Todo[], completedTask: Todo[], setTodos: Function, todos: Todo[], todoCopy: string}) => {
+const TodoFooter = ({setTodoCopy, activeTodo, completedTask, setTodos, todos, todoCopy, markAll}:{setTodoCopy: Function,  activeTodo: Todo[], completedTask: Todo[], setTodos: Function, todos: Todo[], todoCopy: string, markAll: Boolean}) => {
   
   const clearCompleted = () => {
    setTodos(todos.filter(todo => todo.completed === false))
@@ -35,7 +35,7 @@ const TodoFooter = ({setTodoCopy, activeTodo, completedTask, setTodos, todos, to
         </div>
       </TodoFooterLeft>
       <div>
-        {completedTask.length > 0 ? <Button onClick={clearCompleted}>Clear Completed</Button> : ''}
+        {completedTask.length > 0 || markAll ? <Button onClick={clearCompleted}>Clear Completed</Button> : ''}
       </div>
       
     </TodoFooterWrapper>
